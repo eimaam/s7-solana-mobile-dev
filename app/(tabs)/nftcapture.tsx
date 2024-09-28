@@ -196,6 +196,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'center',
     marginVertical: 10,
+    fontWeight: 'bold',
   },
   mintButton: {
     backgroundColor: '#28a745',
