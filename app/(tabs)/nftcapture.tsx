@@ -70,7 +70,6 @@ export default function NFTCaptureScreen() {
   const handleMintConfirmation = () => {
     // Logic to mint the NFT can go here
     setShowModal(false);
-    // Reset the form if necessary
   };
 
   return (

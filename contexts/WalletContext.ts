@@ -1,4 +1,5 @@
-import React, { createContext, FC, PropsWithChildren, useContext, useState } from 'react';
+import { useMobileWallet } from '@/hooks/useMobile';
+import { createContext, FC, PropsWithChildren, useContext, useState } from 'react';
 
 const WalletContext = createContext(null);
 
@@ -16,6 +17,7 @@ export const WalletProvider:FC<PropsWithChildren> = ({ children }) => {
         setWallet(null);
     };
 
+    // WalletContext value
     const value = {
         wallet,
         connectWallet,
