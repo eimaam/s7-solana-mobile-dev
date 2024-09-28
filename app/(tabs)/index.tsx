@@ -1,70 +1,101 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import { StyleSheet, Text, View, Button, ScrollView } from 'react-native';
+import { useRouter } from 'expo-router';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+export default function App() {
+  const router = useRouter();
 
-export default function HomeScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({ ios: 'cmd + d', android: 'cmd + m' })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
+      <View style={styles.container}>
+        <Text style={styles.headerText}>Solana Summer Fellowship 2024</Text>
+        <Text style={styles.subHeaderText}>Solana Mobile Dev Session</Text>
+
+        <Text style={styles.guidelinesHeader}>Welcome to the NFT Minting App!</Text>
+
+        <Text style={styles.description}>
+          This app allows you to mint NFTs with metadata, including an image, geolocation, and additional details like the NFT name and wallet address.
+        </Text>
+
+        <Text style={styles.guidelinesText}>
+          Here's how the app works:
+        </Text>
+
+        <Text style={styles.pageDescription}>
+          1. Welcome Screen: This screen provides an introduction to the app and how to navigate through the features.
+        </Text>
+
+        <Text style={styles.pageDescription}>
+          2. NFT Capture Screen: Enter the wallet address to mint to, provide the NFT name, and capture an image. The app will also automatically retrieve your geolocation to include as metadata in your NFT. After filling in the details, you can mint your NFT.
+        </Text>
+
+        <Text style={styles.pageDescription}>
+          3. NFT List Screen: View the NFTs that you have minted, with details of each NFT and their associated metadata.
+        </Text>
+
+        <Text style={styles.pageDescription}>
+          Once you're ready, go ahead and capture your first NFT!
+        </Text>
+
+        <View style={styles.buttonContainer}>
+        <Button title="Go to NFT Capture" onPress={() => router.push('/nftcapture')} />
+        <Button title="Go to NFTs List" onPress={() => router.push('/nfts')} />
+        </View>
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
+  scrollContainer: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    padding: 16,
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center',
-    gap: 8,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  headerText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    textAlign: 'center',
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  subHeaderText: {
+    fontSize: 18,
+    fontWeight: '600',
+    marginBottom: 20,
+    textAlign: 'center',
+  },
+  guidelinesHeader: {
+    fontSize: 20,
+    fontWeight: '600',
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+  description: {
+    fontSize: 16,
+    textAlign: 'center',
+    marginVertical: 10,
+    paddingHorizontal: 20,
+  },
+  guidelinesText: {
+    fontSize: 18,
+    fontWeight: '600',
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+  pageDescription: {
+    fontSize: 16,
+    textAlign: 'left',
+    marginVertical: 10,
+    paddingHorizontal: 20,
+  },
+  buttonContainer: {
+    marginTop: 20,
+    width: '80%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 });
